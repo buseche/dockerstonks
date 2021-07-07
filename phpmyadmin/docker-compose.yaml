@@ -1,0 +1,22 @@
+version: "3.0"
+
+services: 
+    db:
+        image: "mysql:latest"
+        restart: always
+        enviroment:
+            MYSQL_ROOT_PASSWORD : "123456"
+        volumes:
+          ci4_todo-mysql8: "/var/lib/mysql"  
+    phpmyadmin:
+        image: "phpmyadmin/phpmyadmin"
+        ports:
+            - 8080:80
+        environment: 
+            PMA_HOSTS: "localhost"
+            PMA_PORTS: "3306"
+        volumes:
+            pma: /var/phpmyadmin
+volumes:
+    pma:
+    ci4_todo-mysql8: 

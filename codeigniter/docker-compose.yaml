@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+    app:
+        image: apache-ci4:0.1
+        ports: 
+            - 8000:80
+        working_dir: /var/www/html
+        volumes: 
+            - /opt/lampp/htdocs/storeit:/var/www/html
+    mysql:
+        image: mysql:latest
+        environment: 
+            MYSQL_ROOT_PASSWORD: "123456"
+            MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+            MYSQL_HOST: mysql
+        volumes: 
+            - todo-mysql8:/var/lib/mysql
+volumes:
+    todo-mysql8: 
