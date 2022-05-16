@@ -5,10 +5,10 @@ WORKDIR /var/www/html
 RUN apt-get update && apt-get install -y \
 		libfreetype6-dev \
 		libjpeg62-turbo-dev \
-		libpng-dev libicu-dev zip git \
+		libpng-dev libicu-dev libpq-dev zip git \
 	&& docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-configure intl \
-	&& docker-php-ext-install -j$(nproc) gd intl
+	&& docker-php-ext-install -j$(nproc) gd intl pgsql
 
 RUN sed -i 's!/var/www/html!/var/www/html/public!g' /etc/apache2/apache2.conf /etc/apache2/sites-available/000-default.conf
 
