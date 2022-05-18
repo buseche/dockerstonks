@@ -1,0 +1,24 @@
+version: '3'
+services:
+  db:
+    image: postgres:9.6
+    ports:
+      - "5432:5432"
+    volumes:
+      - /home/buseche/Documentos/servidores:/root
+      - sigesp_data:/var/lib/postgresql/data 
+    environment:
+      - POSTGRES_PASSWORD=adminsigesp
+      - POSTGRES_USER=sapi
+  
+  web:
+    build: .
+    ports:
+      - 8080:80
+    volumes:
+      - /home/buseche/Documentos/servidores/sigesp2/:/var/www/html
+    depends_on:
+      - db
+
+volumes:
+  sigesp_data: {}
